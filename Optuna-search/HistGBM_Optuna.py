@@ -32,7 +32,7 @@ def fit_lgb(trial, x_train, y_train, x_test, y_test):
     return model, log
 
 def objective(trial):
-    log = 0
+    _log = 0.0
     kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
 
     for fold, (idx_train, idx_valid) in enumerate(kf.split(X, y)):
@@ -42,9 +42,9 @@ def objective(trial):
 
 #     x_train, x_test, y_train, y_test = train_test_split(train, y, test_size=0.2)
         model, log = fit_lgb(trial, X_train, y_train, X_valid, y_valid)
-    log += log['loss']
+    _log += log['loss']
         
-    return log
+    return _log
 
 study = optuna.create_study(direction="minimize", study_name="Histgbm Classifier")
 study.optimize(objective, n_trials=25,timeout=STUDY_TIME)
