@@ -1,7 +1,4 @@
-# ML-Code-Cheatsheet
-Machine learning Code for re-usability
-
-# [1. Optuna](https://optuna.org/)
+# [Optuna](https://optuna.org/)
 
 
 ![Optuna Logo](https://optuna.readthedocs.io/en/stable/_static/optuna-logo.png)
