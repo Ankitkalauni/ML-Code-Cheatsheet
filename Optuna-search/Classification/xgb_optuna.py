@@ -15,7 +15,7 @@ def objective(trial, X=X, y=y):
         "lambda": trial.suggest_loguniform("lambda", 1e-8, 10.0),
         "gamma": trial.suggest_loguniform("lambda", 1e-8, 10.0),
         "min_child_weight": trial.suggest_loguniform("min_child_weight", 10, 1000),
-        "seed": SEED,
+        "seed": 42,
         "n_jobs": -1,
         'tree_method':'gpu_hist',
         'gpu_id':0,
@@ -41,6 +41,6 @@ def objective(trial, X=X, y=y):
     return np.mean(cv_scores)
 
 study = optuna.create_study(direction="minimize", study_name="XGBM")
-study.optimize(objective, n_trials=100,timeout = STUDY_TIME)
+study.optimize(objective, n_trials=100,timeout = 8 * 60 * 60)
 
 study.best_params
